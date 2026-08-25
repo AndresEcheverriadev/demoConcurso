@@ -1,5 +1,5 @@
 import User from "../1models/User.js";
-import GenericRepository from "./GenericRepository.js";
+import GenericRepository from "./genericRepository.js";
 
 class UserService extends GenericRepository {
   constructor(dao) {

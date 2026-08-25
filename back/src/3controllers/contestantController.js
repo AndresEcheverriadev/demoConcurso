@@ -1,6 +1,6 @@
 import { contestantService } from "../2services/index.js";
 import { ServerResponse } from "../config/index.js";
-import { timestamp, __dirname } from "../../utils.js";
+import { __getTimestamp, __dirname } from "../../utils.js";
 import * as path from "path";
 import sendMail from "../2services/mailService.js";
 

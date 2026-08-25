@@ -1,5 +1,5 @@
 import Contestant from "../1models/Contestant.js";
-import GenericRepository from "./GenericRepository.js";
+import GenericRepository from "./genericRepository.js";
 
 class ContestantService extends GenericRepository {
   constructor(dao) {

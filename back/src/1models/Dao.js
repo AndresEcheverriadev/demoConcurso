@@ -29,50 +29,54 @@ class Dao {
     this.models = {
       [Contestant.collection]: mongoose.model(
         Contestant.collection,
-        contestantSchema
+        contestantSchema,
       ),
       [User.collection]: mongoose.model(User.collection, userSchema),
       [ContestantWinner.collection]: mongoose.model(
         ContestantWinner.collection,
-        winnerSchema
+        winnerSchema,
       ),
     };
   }
 
-  getAll = async (options, entity) => {
+  #validateEntity = (entity) => {
     if (!this.models[entity]) throw new Error(`La entidad no existe`);
+  };
+
+  getAll = async (options, entity) => {
+    this.#validateEntity(entity);
     let result = await this.models[entity].find(options).lean();
     return result;
   };
 
   getOne = async (options, entity) => {
-    if (!this.models[entity]) throw new Error(`La entidad no existe`);
+    this.#validateEntity(entity);
     let result = await this.models[entity].findById(options).lean();
     return result;
   };
 
   getUser = async (options, entity) => {
-    if (!this.models[entity]) throw new Error(`La entidad no existe`);
+    this.#validateEntity(entity);
     let result = await this.models[entity].findOne(options).lean();
     return result;
   };
 
   save = async (document, entity) => {
-    if (!this.models[entity]) throw new Error(`La entidad no existe`);
+    this.#validateEntity(entity);
     let result = await this.models[entity].create(document);
     return result;
   };
 
   updateOne = async (options, entity) => {
-    if (!this.models[entity]) throw new Error(`La entidad no existe`);
+    this.#validateEntity(entity);
     let result = await this.models[entity]
-      .findByIdAndUpdate(options.record, options.newvalues)
+      .findByIdAndUpdate(options.record, options.newvalues, { new: true })
       .lean();
     return result;
   };
 
   deleteOne = async (options, entity) => {
-    if (!this.models[entity]) throw new Error(`La entidad no existe`);
+    this.#validateEntity(entity);
     let result = await this.models[entity].deleteOne({ _id: options }).lean();
     return result;
   };

@@ -1,5 +1,5 @@
 import ContestantWinner from "../1models/Winner.js";
-import GenericRepository from "./GenericRepository.js";
+import GenericRepository from "./genericRepository.js";
 
 class WinnerService extends GenericRepository {
   constructor(dao) {

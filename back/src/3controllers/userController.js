@@ -5,7 +5,7 @@ import {
 } from "../2services/index.js";
 import { ServerResponse, deleteFileService } from "../config/index.js";
 import jwt from "jsonwebtoken";
-import { timestamp, __dirname } from "../../utils.js";
+import { __getTimestamp, __dirname } from "../../utils.js";
 import * as path from "path";
 import randomNumber from "../2services/randomService.js";
 
@@ -262,7 +262,7 @@ const deleteContestant = async (req, res) => {
     let pathFile = path.join(
       __dirname,
       "../",
-      `html/public/${oneContestant.boleta}`
+      `html/public/${oneContestant.boleta}`,
     );
     const deleteContestant = await contestantService.deleteOne({
       _id: contestant,
