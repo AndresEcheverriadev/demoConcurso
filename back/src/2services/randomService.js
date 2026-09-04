@@ -1,3 +1,6 @@
+import * as dotenv from "dotenv";
+dotenv.config();
+
 async function randomNumber(limit, filter) {
   let url = `https://api.random.org/json-rpc/4/invoke`;
 
@@ -5,7 +8,7 @@ async function randomNumber(limit, filter) {
     jsonrpc: "2.0",
     method: "generateIntegers",
     params: {
-      apiKey: "fc48db89-99ef-4409-bd7e-9cd03b5f8b46",
+      apiKey: process.env.RANDOM_ORG_API_KEY,
       n: 1,
       min: 0,
       max: limit,
