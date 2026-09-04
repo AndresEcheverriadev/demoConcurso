@@ -194,17 +194,16 @@ const addWinner = async (req, res) => {
   }
 };
 
-const eraseWinner = async (req, res) => {
-  let { id } = req.body;
-  if (!id) {
+const deleteWinner = async (req, res) => {
+  let { objectId } = req.body;
+  if (!objectId) {
     return ServerResponse.badRequest({
       res,
-      error: "Sin id",
+      error: "Sin object id",
     });
   }
-
   try {
-    let response = await winnerService.deleteOne(id);
+    let response = await winnerService.deleteOne(objectId);
     ServerResponse.success({
       res,
     });
@@ -250,7 +249,7 @@ const deleteContestant = async (req, res) => {
   if (!contestant) {
     return ServerResponse.badRequest({
       res,
-      error: "Sin id",
+      error: "Sin object id",
     });
   } else if (!oneContestant) {
     return ServerResponse.badRequest({
@@ -297,7 +296,7 @@ export default {
   filteredWinner,
   getConsolidatedWinners,
   addWinner,
-  eraseWinner,
+  deleteWinner,
   oneContestant,
   deleteContestant,
 };
